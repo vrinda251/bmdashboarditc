@@ -3,7 +3,7 @@ import { AppShell } from "@/components/AppShell";
 import { InfoTip } from "@/components/InfoTip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { strs, getSTRDetail } from "@/data/dashboard";
+import { strs, getSTRDetail, type STR, type STRDetail } from "@/data/dashboard";
 import { ArrowLeft, Calendar, ClipboardCheck, FileText, MessageCircle, Smile, Trophy } from "lucide-react";
 
 export const Route = createFileRoute("/str/$id")({
@@ -50,7 +50,7 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 function STRView() {
-  const { str, detail } = Route.useLoaderData();
+  const { str, detail } = Route.useLoaderData() as { str: STR; detail: STRDetail };
 
   return (
     <AppShell>
