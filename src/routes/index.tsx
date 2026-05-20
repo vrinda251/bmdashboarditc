@@ -108,6 +108,7 @@ function BMDashboard() {
   const filteredStrs = q
     ? strs.filter(s => s.name.toLowerCase().includes(q) || s.empId.toLowerCase().includes(q) || s.tc.toLowerCase().includes(q))
     : strs;
+  return (
     <AppShell>
       <div className="space-y-6">
         <div className="flex items-end justify-between flex-wrap gap-2">
