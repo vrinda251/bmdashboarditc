@@ -70,9 +70,9 @@ function Stat({
     : null;
   return (
     <Card className="overflow-hidden">
-      <CardContent className="p-4">
-        <div className="flex items-start justify-between gap-2">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide flex items-center">
+      <CardContent className="p-2.5">
+        <div className="flex items-start justify-between gap-1.5">
+          <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide flex items-center leading-tight">
             {label}
             {tooltip && <InfoTip text={tooltip} />}
             {namesText && (
@@ -80,10 +80,10 @@ function Stat({
                 <TooltipTrigger asChild>
                   <button
                     type="button"
-                    className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors align-middle ml-1"
+                    className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors align-middle ml-0.5"
                     aria-label="STR names"
                   >
-                    <Users className="h-3.5 w-3.5" />
+                    <Users className="h-3 w-3" />
                   </button>
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs whitespace-pre-wrap leading-relaxed bg-popover text-popover-foreground border shadow-lg">
@@ -92,12 +92,12 @@ function Stat({
               </Tooltip>
             )}
           </div>
-          <div className={`h-8 w-8 rounded-md grid place-items-center ${toneClass}`}>
-            <Icon className="h-4 w-4" />
+          <div className={`h-6 w-6 rounded grid place-items-center shrink-0 ${toneClass}`}>
+            <Icon className="h-3.5 w-3.5" />
           </div>
         </div>
-        <div className="mt-2 text-2xl font-semibold tracking-tight">{value}</div>
-        {hint && <div className="text-xs text-muted-foreground mt-0.5">{hint}</div>}
+        <div className="mt-1 text-xl font-semibold tracking-tight leading-none">{value}</div>
+        {hint && <div className="text-[10px] text-muted-foreground mt-0.5">{hint}</div>}
       </CardContent>
     </Card>
   );
