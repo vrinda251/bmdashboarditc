@@ -144,18 +144,70 @@ function BMDashboard() {
         </div>
 
         {/* KPI ROW */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          <Stat label="Total Active STRs" value={summary.totalActive} icon={Users} tooltip="Total STRs currently active in this branch" />
-          <Stat label="Induction Non-Adherence" value={summary.inductionNonAdherence} icon={AlertTriangle} tone="warn"
-            tooltip="STRs lagging behind more than 20 days as compared to their joining date." />
-          <Stat label="Low Feedback Score" value={summary.lowFeedbackScore} icon={MessageSquareWarning} tone="warn"
-            tooltip={moodScoreText()} />
-          <Stat label="Reviews Pending" value={summary.reviewsPending} icon={Clock} tone="ok"
-            tooltip="Based on the number of reviews due and not completed." />
-          <Stat label="Low Proctored Test Score" value={summary.lowProctoredScore} icon={TrendingDown} tone="danger"
-            tooltip="STRs who score less than 60% in any Proctored Test are flagged." />
-          <Stat label="Reviews Received" value={`${strs.filter(s=>s.review1==="Received").length + strs.filter(s=>s.review2==="Received").length}`} icon={CheckCircle2} tone="ok" />
-        </div>
+        {(() => {
+          const nonAdherent = strs.filter((s) => s.adherence < 0.8);
+          const lowFeedback = strs.filter((s) => s.surveyScore < 3.0);
+          const pendingReviews: { name: string; which: string; since: string }[] = [
+            { name: "Arjun Mehta", which: "Review 2", since: "10-Jul-2025" },
+            { name: "Vikram Singh", which: "Review 2", since: "18-Jul-2025" },
+          ];
+          const lowPT = [{ name: "Vikram Singh", note: "PT 1 · 72%" }];
+          return (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+              <Stat
+                label="Total Active STRs"
+                value={summary.totalActive}
+                icon={Users}
+                tooltip="Total STRs currently active in this branch"
+                names={{ title: "Active STRs:", items: strs.map((s) => s.name) }}
+              />
+              <Stat
+                label="Induction Non-Adherence"
+                value={nonAdherent.length}
+                icon={AlertTriangle}
+                tone="warn"
+                tooltip="STRs lagging behind more than 20 days as compared to their joining date."
+                names={{
+                  title: "Non-adherent STRs:",
+                  items: nonAdherent.map((s) => `${s.name} — ${Math.round(s.adherence * 100)}% adherence`),
+                }}
+              />
+              <Stat
+                label="Low Feedback Score"
+                value={lowFeedback.length}
+                icon={MessageSquareWarning}
+                tone="warn"
+                tooltip="Calculated on the basis of the avg survey responses and the classifications:\n≥ 4.0 😊 Positive\n3.0–3.9 😐 Neutral\n< 3.0 😟 Needs Attention"
+                names={{
+                  title: "Low feedback STRs:",
+                  items: lowFeedback.map((s) => `${s.name} — ${s.surveyScore.toFixed(1)} (${moodScoreLabel(s.surveyScore)})`),
+                }}
+              />
+              <Stat
+                label="Reviews Pending"
+                value={pendingReviews.length}
+                icon={Clock}
+                tone="ok"
+                tooltip="Based on the number of reviews due and not completed."
+                names={{
+                  title: "Pending reviews (since):",
+                  items: pendingReviews.map((p) => `${p.name} — ${p.which} (since ${p.since})`),
+                }}
+              />
+              <Stat
+                label="Low Proctored Test Score"
+                value={lowPT.length}
+                icon={TrendingDown}
+                tone="danger"
+                tooltip="STRs who score less than 60% in any Proctored Test are flagged."
+                names={{
+                  title: "Low PT scorers:",
+                  items: lowPT.map((p) => `${p.name} — ${p.note}`),
+                }}
+              />
+            </div>
+          );
+        })()}
 
         {/* PHASES + PT AVGS */}
         <div className="grid lg:grid-cols-2 gap-4">
