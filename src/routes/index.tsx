@@ -3,7 +3,7 @@ import { AppShell } from "@/components/AppShell";
 import { InfoTip } from "@/components/InfoTip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { strs, summary, batchSummary, quizLeaderboard, proctoredLeaderboard } from "@/data/dashboard";
+import { strs, summary, quizLeaderboard, proctoredLeaderboard } from "@/data/dashboard";
 import { AlertTriangle, CheckCircle2, ChevronRight, Clock, GraduationCap, MessageSquareWarning, TrendingDown, Users } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
