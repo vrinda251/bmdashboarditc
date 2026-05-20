@@ -7,6 +7,18 @@ import { strs, summary, batchSummary, quizLeaderboard, proctoredLeaderboard } fr
 import { AlertTriangle, CheckCircle2, ChevronRight, Clock, GraduationCap, MessageSquareWarning, TrendingDown, Users } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
+function moodScoreLabel(score: number) {
+  if (score >= 4.0) return "😊 Positive";
+  if (score >= 3.0) return "😐 Neutral";
+  return "😟 Needs Attention";
+}
+
+function moodScoreText() {
+  const lines = strs.map(s => `${s.name}: ${s.surveyScore.toFixed(1)} — ${moodScoreLabel(s.surveyScore)}`);
+  const avg = strs.reduce((sum, s) => sum + s.surveyScore, 0) / strs.length;
+  return `Mood Score (1-5 pulse survey)\nBranch average: ${avg.toFixed(1)}\n\n${lines.join("\n")}`;
+}
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -93,7 +105,7 @@ function BMDashboard() {
           <Stat label="Induction Non-Adherence" value={summary.inductionNonAdherence} icon={AlertTriangle} tone="warn"
             tooltip="STRs lagging behind more than 20 days as compared to their joining date." />
           <Stat label="Low Feedback Score" value={summary.lowFeedbackScore} icon={MessageSquareWarning} tone="warn"
-            tooltip="STRs lagging behind more than 20 days as compared to their joining date." />
+            tooltip={moodScoreText()} />
           <Stat label="Reviews Pending" value={summary.reviewsPending} icon={Clock} tone="ok"
             tooltip="Based on the number of reviews due and not completed." />
           <Stat label="Low Proctored Test Score" value={summary.lowProctoredScore} icon={TrendingDown} tone="danger"

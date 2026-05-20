@@ -17,14 +17,15 @@ export type STR = {
   review2: "Received" | "Pending" | "Not due";
   daysCompleted: string;
   adherence: number; // 0-1
+  surveyScore: number; // 1-5 scale from latest pulse survey
 };
 
 export const strs: STR[] = [
-  { id: "001", name: "Arjun Mehta", empId: "ITC-2024-001", tc: "Rahul Sharma", phase: "Phase 1 · Core Induction", phaseDay: "Day 32 / 32", phaseProgress: 1, channels: "Core", quizAvg: 0.74, ptAvg: "37/50", pt1: "37/50", pt2: "—", pt3: "—", pt4: "—", review1: "Received", review2: "Not due", daysCompleted: "32 / 122", adherence: 1.0 },
-  { id: "002", name: "Priya Nair", empId: "ITC-2024-002", tc: "Sunita Verma", phase: "Phase 2 · CFP Advanced", phaseDay: "Day 20 / 22", phaseProgress: 20/22, channels: "Core", quizAvg: 0.86, ptAvg: "40.5/50", pt1: "42/50", pt2: "39/50", pt3: "—", pt4: "—", review1: "Received", review2: "Not due", daysCompleted: "52 / 122", adherence: 0.9 },
-  { id: "003", name: "Rohit Das", empId: "ITC-2024-003", tc: "Rahul Sharma", phase: "Phase 1 · Core Induction", phaseDay: "Day 18 / 32", phaseProgress: 18/32, channels: "none", quizAvg: 0.61, ptAvg: "—", pt1: "—", pt2: "—", pt3: "—", pt4: "—", review1: "Not due", review2: "Not due", daysCompleted: "18 / 122", adherence: 0.5 },
-  { id: "004", name: "Sneha Kulkarni", empId: "ITC-2024-004", tc: "Anil Bose", phase: "Phase 4 · MT/Loyalty/Insti", phaseDay: "Day 15 / 22", phaseProgress: 15/22, channels: "Core, CFP, GR1, GR2", quizAvg: 0.92, ptAvg: "44.5/50", pt1: "45/50", pt2: "44/50", pt3: "43/50", pt4: "46/50", review1: "Received", review2: "Received", daysCompleted: "115 / 122", adherence: 0.8 },
-  { id: "005", name: "Vikram Singh", empId: "ITC-2024-005", tc: "Sunita Verma", phase: "Phase 2 · CFP Advanced", phaseDay: "Day 16 / 22", phaseProgress: 16/22, channels: "Core", quizAvg: 0.70, ptAvg: "36/50", pt1: "36/50", pt2: "—", pt3: "—", pt4: "—", review1: "Received", review2: "Not due", daysCompleted: "48 / 122", adherence: 0.8 },
+  { id: "001", name: "Arjun Mehta", empId: "ITC-2024-001", tc: "Rahul Sharma", phase: "Phase 1 · Core Induction", phaseDay: "Day 32 / 32", phaseProgress: 1, channels: "Core", quizAvg: 0.74, ptAvg: "37/50", pt1: "37/50", pt2: "—", pt3: "—", pt4: "—", review1: "Received", review2: "Not due", daysCompleted: "32 / 122", adherence: 1.0, surveyScore: 3.2 },
+  { id: "002", name: "Priya Nair", empId: "ITC-2024-002", tc: "Sunita Verma", phase: "Phase 2 · CFP Advanced", phaseDay: "Day 20 / 22", phaseProgress: 20/22, channels: "Core", quizAvg: 0.86, ptAvg: "40.5/50", pt1: "42/50", pt2: "39/50", pt3: "—", pt4: "—", review1: "Received", review2: "Not due", daysCompleted: "52 / 122", adherence: 0.9, surveyScore: 4.1 },
+  { id: "003", name: "Rohit Das", empId: "ITC-2024-003", tc: "Rahul Sharma", phase: "Phase 1 · Core Induction", phaseDay: "Day 18 / 32", phaseProgress: 18/32, channels: "none", quizAvg: 0.61, ptAvg: "—", pt1: "—", pt2: "—", pt3: "—", pt4: "—", review1: "Not due", review2: "Not due", daysCompleted: "18 / 122", adherence: 0.5, surveyScore: 2.4 },
+  { id: "004", name: "Sneha Kulkarni", empId: "ITC-2024-004", tc: "Anil Bose", phase: "Phase 4 · MT/Loyalty/Insti", phaseDay: "Day 15 / 22", phaseProgress: 15/22, channels: "Core, CFP, GR1, GR2", quizAvg: 0.92, ptAvg: "44.5/50", pt1: "45/50", pt2: "44/50", pt3: "43/50", pt4: "46/50", review1: "Received", review2: "Received", daysCompleted: "115 / 122", adherence: 0.8, surveyScore: 4.5 },
+  { id: "005", name: "Vikram Singh", empId: "ITC-2024-005", tc: "Sunita Verma", phase: "Phase 2 · CFP Advanced", phaseDay: "Day 16 / 22", phaseProgress: 16/22, channels: "Core", quizAvg: 0.70, ptAvg: "36/50", pt1: "36/50", pt2: "—", pt3: "—", pt4: "—", review1: "Received", review2: "Not due", daysCompleted: "48 / 122", adherence: 0.8, surveyScore: 3.8 },
 ];
 
 export const summary = {
