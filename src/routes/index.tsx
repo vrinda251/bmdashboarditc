@@ -222,7 +222,7 @@ function BMDashboard() {
                         <div className="h-full bg-primary" style={{ width: `${Math.round(s.phaseProgress * 100)}%` }} />
                       </div>
                     </td>
-                    <td className="text-xs">{s.channels}</td>
+                    <td className="text-xs max-w-[140px] truncate" title={getPhasesCompleted(s).join(", ")}>{getPhasesCompleted(s).join(", ") || "—"}</td>
                     <td className={`font-medium ${pctTone(s.quizAvg)}`}>{Math.round(s.quizAvg * 100)}%</td>
                     <td className="font-medium">{s.ptAvg}</td>
                     <td><ReviewBadge s={s.review1} /></td>
