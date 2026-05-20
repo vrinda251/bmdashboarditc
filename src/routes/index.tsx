@@ -15,11 +15,6 @@ function moodScoreLabel(score: number) {
   return "😟 Needs Attention";
 }
 
-function moodScoreText() {
-  const lines = strs.map(s => `${s.name}: ${s.surveyScore.toFixed(1)} — ${moodScoreLabel(s.surveyScore)}`);
-  const avg = strs.reduce((sum, s) => sum + s.surveyScore, 0) / strs.length;
-  return `Mood Score (1-5 pulse survey)\nBranch average: ${avg.toFixed(1)}\n\n${lines.join("\n")}`;
-}
 
 function getPhasesCompleted(str: typeof strs[0]) {
   const phaseMap: Record<string, string[]> = {
