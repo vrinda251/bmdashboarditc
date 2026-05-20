@@ -170,7 +170,7 @@ function BMDashboard() {
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <GraduationCap className="h-4 w-4 text-primary" />
-              STR Overview — Progress, Channels & Assessment Status
+              STR Overview — Progress, Phases & Assessment Status
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-0 overflow-x-auto">
