@@ -54,6 +54,7 @@ function Stat({
   icon: Icon,
   tone = "default",
   tooltip,
+  names,
 }: {
   label: string;
   value: React.ReactNode;
@@ -61,6 +62,7 @@ function Stat({
   icon: React.ComponentType<{ className?: string }>;
   tone?: "default" | "warn" | "danger" | "ok";
   tooltip?: string;
+  names?: { title: string; items: string[] };
 }) {
   const toneClass = {
     default: "text-primary bg-primary/10",
@@ -68,6 +70,9 @@ function Stat({
     danger: "text-red-600 bg-red-100 dark:bg-red-500/15",
     ok: "text-emerald-600 bg-emerald-100 dark:bg-emerald-500/15",
   }[tone];
+  const namesText = names
+    ? `${names.title}\n${names.items.length ? names.items.map((i) => `• ${i}`).join("\n") : "None"}`
+    : null;
   return (
     <Card className="overflow-hidden">
       <CardContent className="p-4">
@@ -75,6 +80,22 @@ function Stat({
           <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide flex items-center">
             {label}
             {tooltip && <InfoTip text={tooltip} />}
+            {namesText && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    type="button"
+                    className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors align-middle ml-1"
+                    aria-label="STR names"
+                  >
+                    <Users className="h-3.5 w-3.5" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs whitespace-pre-wrap leading-relaxed bg-popover text-popover-foreground border shadow-lg">
+                  {namesText}
+                </TooltipContent>
+              </Tooltip>
+            )}
           </div>
           <div className={`h-8 w-8 rounded-md grid place-items-center ${toneClass}`}>
             <Icon className="h-4 w-4" />
