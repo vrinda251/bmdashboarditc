@@ -80,6 +80,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Branch Manager dashboard for STR training programme tracking." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "BM Dashboard — Kolkata Branch" },
+      { name: "twitter:description", content: "Branch Manager dashboard for STR training programme tracking." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6d2620f7-e6dd-4d9a-a166-99672c778bf2/id-preview-260a7e58--25ec0788-9f18-4ebb-862d-f601f8b28b91.lovable.app-1779256640408.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6d2620f7-e6dd-4d9a-a166-99672c778bf2/id-preview-260a7e58--25ec0788-9f18-4ebb-862d-f601f8b28b91.lovable.app-1779256640408.png" },
     ],
     links: [
       {
