@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { strs, summary, quizLeaderboard, proctoredLeaderboard } from "@/data/dashboard";
-import { AlertTriangle, CheckCircle2, ChevronRight, Clock, GraduationCap, MessageSquareWarning, Search, TrendingDown, Users } from "lucide-react";
+import { AlertTriangle, ChevronRight, Clock, GraduationCap, MessageSquareWarning, Search, TrendingDown, Users } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 function moodScoreLabel(score: number) {
