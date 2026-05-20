@@ -126,16 +126,16 @@ function BMDashboard() {
     : strs;
   return (
     <AppShell>
-      <div className="space-y-6">
+      <div className="space-y-3">
         <div className="flex items-end justify-between flex-wrap gap-2">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight flex items-center">
+            <h1 className="text-lg font-semibold tracking-tight flex items-center leading-tight">
               Branch Manager Dashboard
               <InfoTip text="A mail is sent once every 15 days and after a Proctored Test to the BM. A reminder mail is sent 3 days before a review is due." />
             </h1>
-            <p className="text-sm text-muted-foreground">STR training overview · Kolkata Branch</p>
+            <p className="text-xs text-muted-foreground">STR training overview · Kolkata Branch</p>
           </div>
-          <Badge variant="secondary" className="text-xs">Last updated · today</Badge>
+          <Badge variant="secondary" className="text-[10px]">Last updated · today</Badge>
         </div>
 
         {/* KPI ROW */}
@@ -148,7 +148,7 @@ function BMDashboard() {
           ];
           const lowPT = [{ name: "Vikram Singh", note: "PT 1 · 72%" }];
           return (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+            <div className="grid grid-cols-5 gap-2">
               <Stat
                 label="Total Active STRs"
                 value={summary.totalActive}
