@@ -19,6 +19,22 @@ function moodScoreText() {
   return `Mood Score (1-5 pulse survey)\nBranch average: ${avg.toFixed(1)}\n\n${lines.join("\n")}`;
 }
 
+function getPhasesCompleted(str: typeof strs[0]) {
+  const phaseMap: Record<string, string[]> = {
+    "Phase 1": [],
+    "Phase 2": ["Core Induction"],
+    "Phase 3": ["Core Induction", "CFP Advanced"],
+    "Phase 4": ["Core Induction", "CFP Advanced", "GR1 + GR2"],
+  };
+  const currentPhase = Object.keys(phaseMap).find(p => str.phase.includes(p)) ?? "Phase 1";
+  const completed = [...(phaseMap[currentPhase] ?? [])];
+  if (str.phaseProgress === 1) {
+    const currentName = str.phase.replace(/^Phase \d+ · /, "");
+    if (!completed.includes(currentName)) completed.push(currentName);
+  }
+  return completed;
+}
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
