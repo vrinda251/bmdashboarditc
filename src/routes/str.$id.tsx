@@ -19,7 +19,8 @@ export const Route = createFileRoute("/str/$id")({
   loader: ({ params }) => {
     const str = strs.find((s) => s.id === params.id);
     if (!str) throw notFound();
-    return { str, detail: getSTRDetail(params.id) };
+    const detail = getSTRDetail(params.id);
+    return { str, detail };
   },
   notFoundComponent: () => (
     <AppShell>
