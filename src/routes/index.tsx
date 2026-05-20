@@ -70,9 +70,9 @@ function Stat({
     : null;
   return (
     <Card className="overflow-hidden">
-      <CardContent className="p-4">
-        <div className="flex items-start justify-between gap-2">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide flex items-center">
+      <CardContent className="p-2.5">
+        <div className="flex items-start justify-between gap-1.5">
+          <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide flex items-center leading-tight">
             {label}
             {tooltip && <InfoTip text={tooltip} />}
             {namesText && (
@@ -80,10 +80,10 @@ function Stat({
                 <TooltipTrigger asChild>
                   <button
                     type="button"
-                    className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors align-middle ml-1"
+                    className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors align-middle ml-0.5"
                     aria-label="STR names"
                   >
-                    <Users className="h-3.5 w-3.5" />
+                    <Users className="h-3 w-3" />
                   </button>
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs whitespace-pre-wrap leading-relaxed bg-popover text-popover-foreground border shadow-lg">
@@ -92,12 +92,12 @@ function Stat({
               </Tooltip>
             )}
           </div>
-          <div className={`h-8 w-8 rounded-md grid place-items-center ${toneClass}`}>
-            <Icon className="h-4 w-4" />
+          <div className={`h-6 w-6 rounded grid place-items-center shrink-0 ${toneClass}`}>
+            <Icon className="h-3.5 w-3.5" />
           </div>
         </div>
-        <div className="mt-2 text-2xl font-semibold tracking-tight">{value}</div>
-        {hint && <div className="text-xs text-muted-foreground mt-0.5">{hint}</div>}
+        <div className="mt-1 text-xl font-semibold tracking-tight leading-none">{value}</div>
+        {hint && <div className="text-[10px] text-muted-foreground mt-0.5">{hint}</div>}
       </CardContent>
     </Card>
   );
@@ -126,16 +126,16 @@ function BMDashboard() {
     : strs;
   return (
     <AppShell>
-      <div className="space-y-6">
+      <div className="space-y-3">
         <div className="flex items-end justify-between flex-wrap gap-2">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight flex items-center">
+            <h1 className="text-lg font-semibold tracking-tight flex items-center leading-tight">
               Branch Manager Dashboard
               <InfoTip text="A mail is sent once every 15 days and after a Proctored Test to the BM. A reminder mail is sent 3 days before a review is due." />
             </h1>
-            <p className="text-sm text-muted-foreground">STR training overview · Kolkata Branch</p>
+            <p className="text-xs text-muted-foreground">STR training overview · Kolkata Branch</p>
           </div>
-          <Badge variant="secondary" className="text-xs">Last updated · today</Badge>
+          <Badge variant="secondary" className="text-[10px]">Last updated · today</Badge>
         </div>
 
         {/* KPI ROW */}
@@ -148,7 +148,7 @@ function BMDashboard() {
           ];
           const lowPT = [{ name: "Vikram Singh", note: "PT 1 · 72%" }];
           return (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+            <div className="grid grid-cols-5 gap-2">
               <Stat
                 label="Total Active STRs"
                 value={summary.totalActive}
@@ -205,21 +205,21 @@ function BMDashboard() {
         })()}
 
         {/* PHASES + PT AVGS */}
-        <div className="grid lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2">
           <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium flex items-center">
+            <CardHeader className="p-2.5 pb-1.5">
+              <CardTitle className="text-xs font-medium flex items-center">
                 Phases Completed
                 <InfoTip text="No. of STRs who have completed a particular phase" />
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-0 grid grid-cols-2 gap-3">
+            <CardContent className="p-2.5 pt-0 grid grid-cols-4 gap-1.5">
               {summary.phasesCompleted.map((p) => (
-                <div key={p.label} className="rounded-md border bg-card p-3">
-                  <div className="text-xs text-muted-foreground">{p.label}</div>
-                  <div className="text-xl font-semibold mt-1 flex items-baseline gap-1">
+                <div key={p.label} className="rounded border bg-card p-1.5">
+                  <div className="text-[9px] text-muted-foreground leading-tight truncate" title={p.label}>{p.label}</div>
+                  <div className="text-base font-semibold mt-0.5 flex items-baseline gap-0.5 leading-none">
                     {p.count}
-                    <span className="text-xs text-muted-foreground font-normal">STRs</span>
+                    <span className="text-[9px] text-muted-foreground font-normal">STRs</span>
                   </div>
                 </div>
               ))}
@@ -227,19 +227,19 @@ function BMDashboard() {
           </Card>
 
           <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium flex items-center">
+            <CardHeader className="p-2.5 pb-1.5">
+              <CardTitle className="text-xs font-medium flex items-center">
                 Proctored Test Averages
                 <InfoTip text="Batch average per Proctored Test. Hover any tile to see test-wise lowest and highest mark." />
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-0 grid grid-cols-4 gap-2">
+            <CardContent className="p-2.5 pt-0 grid grid-cols-4 gap-1.5">
               {summary.proctoredAvgs.map((pt) => (
                 <Tooltip key={pt.label}>
                   <TooltipTrigger asChild>
-                    <div className="rounded-md border bg-card p-3 cursor-help">
-                      <div className="text-[11px] text-muted-foreground">{pt.label}</div>
-                      <div className={`text-lg font-semibold mt-1 ${pctTone(pt.avg)}`}>
+                    <div className="rounded border bg-card p-1.5 cursor-help">
+                      <div className="text-[9px] text-muted-foreground leading-tight">{pt.label}</div>
+                      <div className={`text-base font-semibold mt-0.5 leading-none ${pctTone(pt.avg)}`}>
                         {Math.round(pt.avg * 100)}%
                       </div>
                     </div>
