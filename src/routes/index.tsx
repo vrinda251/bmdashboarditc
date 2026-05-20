@@ -253,38 +253,6 @@ function BMDashboard() {
           </CardContent>
         </Card>
 
-        {/* BATCH PERFORMANCE SUMMARY */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Batch Performance Summary</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0 overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b text-left text-xs uppercase tracking-wide text-muted-foreground">
-                  <th className="py-2">Assessment</th>
-                  <th>Batch Avg</th>
-                  <th>Highest</th>
-                  <th>Lowest</th>
-                  <th>Attempted</th>
-                  <th>Cleared (≥60%)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {batchSummary.map((r) => (
-                  <tr key={r.name} className="border-b last:border-0">
-                    <td className="py-2.5 font-medium">{r.name}</td>
-                    <td className="font-medium">{r.avg}</td>
-                    <td className="text-emerald-600">{r.high}</td>
-                    <td className="text-amber-600">{r.low}</td>
-                    <td className="text-muted-foreground">{r.attempted}</td>
-                    <td className="text-muted-foreground">{r.cleared}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </CardContent>
-        </Card>
 
         {/* LEADERBOARDS */}
         <div className="grid lg:grid-cols-2 gap-4">
