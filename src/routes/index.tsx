@@ -19,6 +19,22 @@ function moodScoreText() {
   return `Mood Score (1-5 pulse survey)\nBranch average: ${avg.toFixed(1)}\n\n${lines.join("\n")}`;
 }
 
+function getPhasesCompleted(str: typeof strs[0]) {
+  const phaseMap: Record<string, string[]> = {
+    "Phase 1": [],
+    "Phase 2": ["Core Induction"],
+    "Phase 3": ["Core Induction", "CFP Advanced"],
+    "Phase 4": ["Core Induction", "CFP Advanced", "GR1 + GR2"],
+  };
+  const currentPhase = Object.keys(phaseMap).find(p => str.phase.includes(p)) ?? "Phase 1";
+  const completed = [...(phaseMap[currentPhase] ?? [])];
+  if (str.phaseProgress === 1) {
+    const currentName = str.phase.replace(/^Phase \d+ · /, "");
+    if (!completed.includes(currentName)) completed.push(currentName);
+  }
+  return completed;
+}
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -170,7 +186,7 @@ function BMDashboard() {
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <GraduationCap className="h-4 w-4 text-primary" />
-              STR Overview — Progress, Channels & Assessment Status
+              STR Overview — Progress, Phases & Assessment Status
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-0 overflow-x-auto">
@@ -181,7 +197,7 @@ function BMDashboard() {
                   <Th tip="TC/AM assigned to mentor this STR — entered manually.">TC</Th>
                   <Th tip="Current programme part derived from mAstra.">Phase</Th>
                   <Th tip="Days elapsed within the current part + total days in that part. Bar shows fill proportional to % through current part.">Phase Progress</Th>
-                  <Th tip="Channels fully completed.">Channels</Th>
+                  <Th tip="Phases fully completed by this STR.">Phases Completed</Th>
                   <Th tip="Average of all weekly quiz scores. Auto-graded, open reference. Source: mAstra.">Quiz Avg</Th>
                   <Th tip="Average Proctored Test score across PTs taken so far. '—' if none taken yet.">PT Avg</Th>
                   <Th tip="Formal review at end of Part 1 (Day 32). BM submits via MS Form.">Review 1</Th>
@@ -206,7 +222,7 @@ function BMDashboard() {
                         <div className="h-full bg-primary" style={{ width: `${Math.round(s.phaseProgress * 100)}%` }} />
                       </div>
                     </td>
-                    <td className="text-xs">{s.channels}</td>
+                    <td className="text-xs max-w-[140px] truncate" title={getPhasesCompleted(s).join(", ")}>{getPhasesCompleted(s).join(", ") || "—"}</td>
                     <td className={`font-medium ${pctTone(s.quizAvg)}`}>{Math.round(s.quizAvg * 100)}%</td>
                     <td className="font-medium">{s.ptAvg}</td>
                     <td><ReviewBadge s={s.review1} /></td>

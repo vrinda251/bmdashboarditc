@@ -52,6 +52,22 @@ function StatusBadge({ status }: { status: string }) {
 function STRView() {
   const { str, detail } = Route.useLoaderData() as { str: STR; detail: STRDetail };
 
+  function getPhasesCompleted() {
+    const phaseMap: Record<string, string[]> = {
+      "Phase 1": [],
+      "Phase 2": ["Core Induction"],
+      "Phase 3": ["Core Induction", "CFP Advanced"],
+      "Phase 4": ["Core Induction", "CFP Advanced", "GR1 + GR2"],
+    };
+    const currentPhase = Object.keys(phaseMap).find(p => str.phase.includes(p)) ?? "Phase 1";
+    const completed = [...(phaseMap[currentPhase] ?? [])];
+    if (str.phaseProgress === 1) {
+      const currentName = str.phase.replace(/^Phase \d+ · /, "");
+      if (!completed.includes(currentName)) completed.push(currentName);
+    }
+    return completed;
+  }
+
   return (
     <AppShell>
       <div className="space-y-6">
@@ -71,6 +87,7 @@ function STRView() {
             <Info label="Batch Start" value={detail.batchStart} icon={Calendar} />
             <Info label="Days Completed" value={str.daysCompleted} />
             <Info label="Current Phase" value={str.phase} />
+            <Info label="Phases Completed" value={getPhasesCompleted().join(", ") || "—"} />
             <Info label="Phase Completion" value={`${Math.round(str.phaseProgress * 100)}%`} />
             <Info label="Weekly Quiz Avg" value={`${Math.round(str.quizAvg * 100)}%`} />
             <Info label="Reviews Completed" value={detail.reviewsCompleted} />
