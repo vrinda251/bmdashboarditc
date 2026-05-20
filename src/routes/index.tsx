@@ -197,7 +197,7 @@ function BMDashboard() {
                   <Th tip="TC/AM assigned to mentor this STR — entered manually.">TC</Th>
                   <Th tip="Current programme part derived from mAstra.">Phase</Th>
                   <Th tip="Days elapsed within the current part + total days in that part. Bar shows fill proportional to % through current part.">Phase Progress</Th>
-                  <Th tip="Channels fully completed.">Channels</Th>
+                  <Th tip="Phases fully completed by this STR.">Phases Completed</Th>
                   <Th tip="Average of all weekly quiz scores. Auto-graded, open reference. Source: mAstra.">Quiz Avg</Th>
                   <Th tip="Average Proctored Test score across PTs taken so far. '—' if none taken yet.">PT Avg</Th>
                   <Th tip="Formal review at end of Part 1 (Day 32). BM submits via MS Form.">Review 1</Th>
