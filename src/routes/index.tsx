@@ -226,7 +226,7 @@ function BMDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {strs.map((s) => (
+                {filteredStrs.map((s) => (
                   <tr key={s.id} className="border-b last:border-0 hover:bg-muted/40 transition-colors">
                     <td className="py-3">
                       <div className="font-medium">{s.name}</div>
