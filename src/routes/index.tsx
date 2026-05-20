@@ -191,10 +191,21 @@ function BMDashboard() {
         {/* STR OVERVIEW TABLE */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <GraduationCap className="h-4 w-4 text-primary" />
-              STR Overview — Progress, Phases & Assessment Status
-            </CardTitle>
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
+                <GraduationCap className="h-4 w-4 text-primary" />
+                STR Overview — Progress, Phases & Assessment Status
+              </CardTitle>
+              <div className="relative w-full sm:w-64">
+                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search by name, ID or TC…"
+                  className="pl-8 h-9"
+                />
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="pt-0 overflow-x-auto">
             <table className="w-full text-sm">
