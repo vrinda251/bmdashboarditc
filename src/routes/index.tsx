@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { InfoTip } from "@/components/InfoTip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { strs, summary, quizLeaderboard, proctoredLeaderboard } from "@/data/dashboard";
-import { AlertTriangle, CheckCircle2, ChevronRight, Clock, GraduationCap, MessageSquareWarning, TrendingDown, Users } from "lucide-react";
+import { AlertTriangle, CheckCircle2, ChevronRight, Clock, GraduationCap, MessageSquareWarning, Search, TrendingDown, Users } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 function moodScoreLabel(score: number) {
@@ -101,6 +103,11 @@ function ReviewBadge({ s }: { s: "Received" | "Pending" | "Not due" }) {
 }
 
 function BMDashboard() {
+  const [query, setQuery] = useState("");
+  const q = query.trim().toLowerCase();
+  const filteredStrs = q
+    ? strs.filter(s => s.name.toLowerCase().includes(q) || s.empId.toLowerCase().includes(q) || s.tc.toLowerCase().includes(q))
+    : strs;
   return (
     <AppShell>
       <div className="space-y-6">
@@ -184,10 +191,21 @@ function BMDashboard() {
         {/* STR OVERVIEW TABLE */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <GraduationCap className="h-4 w-4 text-primary" />
-              STR Overview — Progress, Phases & Assessment Status
-            </CardTitle>
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
+                <GraduationCap className="h-4 w-4 text-primary" />
+                STR Overview — Progress, Phases & Assessment Status
+              </CardTitle>
+              <div className="relative w-full sm:w-64">
+                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search by name, ID or TC…"
+                  className="pl-8 h-9"
+                />
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="pt-0 overflow-x-auto">
             <table className="w-full text-sm">
@@ -208,7 +226,7 @@ function BMDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {strs.map((s) => (
+                {filteredStrs.map((s) => (
                   <tr key={s.id} className="border-b last:border-0 hover:bg-muted/40 transition-colors">
                     <td className="py-3">
                       <div className="font-medium">{s.name}</div>
