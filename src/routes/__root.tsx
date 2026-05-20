@@ -73,14 +73,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "BM Dashboard — Kolkata Branch" },
+      { name: "description", content: "Branch Manager dashboard for STR training programme tracking." },
+      { name: "author", content: "ITC" },
+      { property: "og:title", content: "BM Dashboard — Kolkata Branch" },
+      { property: "og:description", content: "Branch Manager dashboard for STR training programme tracking." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
