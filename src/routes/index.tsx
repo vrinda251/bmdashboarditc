@@ -205,21 +205,21 @@ function BMDashboard() {
         })()}
 
         {/* PHASES + PT AVGS */}
-        <div className="grid lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2">
           <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium flex items-center">
+            <CardHeader className="p-2.5 pb-1.5">
+              <CardTitle className="text-xs font-medium flex items-center">
                 Phases Completed
                 <InfoTip text="No. of STRs who have completed a particular phase" />
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-0 grid grid-cols-2 gap-3">
+            <CardContent className="p-2.5 pt-0 grid grid-cols-4 gap-1.5">
               {summary.phasesCompleted.map((p) => (
-                <div key={p.label} className="rounded-md border bg-card p-3">
-                  <div className="text-xs text-muted-foreground">{p.label}</div>
-                  <div className="text-xl font-semibold mt-1 flex items-baseline gap-1">
+                <div key={p.label} className="rounded border bg-card p-1.5">
+                  <div className="text-[9px] text-muted-foreground leading-tight truncate" title={p.label}>{p.label}</div>
+                  <div className="text-base font-semibold mt-0.5 flex items-baseline gap-0.5 leading-none">
                     {p.count}
-                    <span className="text-xs text-muted-foreground font-normal">STRs</span>
+                    <span className="text-[9px] text-muted-foreground font-normal">STRs</span>
                   </div>
                 </div>
               ))}
@@ -227,19 +227,19 @@ function BMDashboard() {
           </Card>
 
           <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium flex items-center">
+            <CardHeader className="p-2.5 pb-1.5">
+              <CardTitle className="text-xs font-medium flex items-center">
                 Proctored Test Averages
                 <InfoTip text="Batch average per Proctored Test. Hover any tile to see test-wise lowest and highest mark." />
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-0 grid grid-cols-4 gap-2">
+            <CardContent className="p-2.5 pt-0 grid grid-cols-4 gap-1.5">
               {summary.proctoredAvgs.map((pt) => (
                 <Tooltip key={pt.label}>
                   <TooltipTrigger asChild>
-                    <div className="rounded-md border bg-card p-3 cursor-help">
-                      <div className="text-[11px] text-muted-foreground">{pt.label}</div>
-                      <div className={`text-lg font-semibold mt-1 ${pctTone(pt.avg)}`}>
+                    <div className="rounded border bg-card p-1.5 cursor-help">
+                      <div className="text-[9px] text-muted-foreground leading-tight">{pt.label}</div>
+                      <div className={`text-base font-semibold mt-0.5 leading-none ${pctTone(pt.avg)}`}>
                         {Math.round(pt.avg * 100)}%
                       </div>
                     </div>
